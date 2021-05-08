@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "description": "Example of a test suite.",
+  "scripts": {
+    "test": "teru ./sum2 ./sum1 || echo Done."
+  },
+  "devDependencies": {
+    "tehanu": "workspace:*",
+    "tehanu-repo-coco": "workspace:*",
+    "tehanu-teru": "workspace:*"
+  }
+}

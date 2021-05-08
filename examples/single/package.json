@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "description": "Example of a test suite.",
+  "scripts": {
+    "test": "node . || echo Done."
+  },
+  "tehanu": {
+    "reporter": "tehanu-repo-coco",
+    "bail": true
+  },
+  "devDependencies": {
+    "tehanu": "workspace:*",
+    "tehanu-repo-coco": "workspace:*"
+  }
+}

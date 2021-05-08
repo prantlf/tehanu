@@ -1,0 +1,40 @@
+{
+  "name": "tehanu-teas",
+  "version": "0.0.1",
+  "description": "Tiny test tap reporter.",
+  "keywords": [],
+  "author": "Ferdinand Prantl <prantlf@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare": "node build && cp index.d.ts dist",
+    "test": "c8 teru test*"
+  },
+  "c8": {
+    "include": [
+      "index.js",
+      "deep-compare.js"
+    ],
+    "check-coverage": true,
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "branches": 100,
+    "lines": 100,
+    "functions": 100,
+    "statements": 100
+  },
+  "devDependencies": {
+    "@prantlf/esbuild": "^0.8.46",
+    "c8": "^7.7.2",
+    "tehanu": "workspace:*",
+    "tehanu-repo-coco": "workspace:*",
+    "tehanu-teru": "workspace:*"
+  }
+}

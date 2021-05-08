@@ -1,0 +1,13 @@
+{
+  "name": "tehanu-repo-coco",
+  "version": "0.0.1",
+  "description": "Tiny test colourful console reporter.",
+  "keywords": [],
+  "author": "Ferdinand Prantl <prantlf@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "index.js", "colors.js"
+  ],
+  "main": "index.js",
+  "types": "index.d.ts"
+}

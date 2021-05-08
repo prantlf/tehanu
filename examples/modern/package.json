@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "description": "Example of a test suite.",
+  "scripts": {
+    "test": "node -r source-map-support/register -r esm . || echo Done."
+  },
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "source-map-support": "^0.5.19",
+    "tehanu": "workspace:*",
+    "tehanu-teas": "workspace:*"
+  }
+}

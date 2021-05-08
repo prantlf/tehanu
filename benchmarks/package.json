@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "devDependencies": {
+    "ava": "^3.15.0",
+    "baretest": "^2.0.0",
+    "jasmine": "^3.7.0",
+    "jest": "^26.6.3",
+    "mocha": "^8.4.0",
+    "pta": "^0.2.3",
+    "tap": "^15.0.9",
+    "tape": "^5.2.2",
+    "tehanu": "workspace:*",
+    "tehanu-teru": "workspace:*",
+    "tehanu-repo-tape": "workspace:*",
+    "test": "^0.6.0",
+    "uvu": "^0.5.1",
+    "zora": "^4.1.0"
+  }
+}
