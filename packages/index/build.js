@@ -6,6 +6,11 @@ const builds = [
     format: 'esm'
   },
   {
+    outfile: 'dist/index.esm.min.js',
+    format: 'esm',
+    minify: true
+  },
+  {
     outfile: 'dist/index.umd.js',
     format: 'umd',
     globalName: 'tehanu'
