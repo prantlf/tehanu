@@ -2,11 +2,31 @@
   "name": "tehanu",
   "version": "0.0.1",
   "description": "Blazingly fast, tiny and simple JavaScript test harness for Node.js and browser.",
-  "keywords": [],
-  "author": "Ferdinand Prantl <prantlf@gmail.com>",
+  "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/index#readme",
+  "author": {
+    "name": "Ferdinand Prantl",
+    "email": "prantlf@gmail.com",
+    "url": "http://prantl.tk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prantlf/tehanu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/prantlf/tehanu/issues"
+  },
   "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/prantlf/tehanu/blob/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": ">=12"
+  },
   "files": [
-    "index.js"
+    "dist"
   ],
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -38,5 +58,13 @@
     "c8": "^7.7.2",
     "source-map-support": "^0.5.19",
     "tehanu-repo-tape": "workspace:*"
-  }
+  },
+  "keywords": [
+    "test",
+    "testing",
+    "unit-testing",
+    "test-framework",
+    "test-harness",
+    "test-runner"
+  ]
 }

@@ -1,13 +1,39 @@
 {
   "name": "tehanu-repo-coco",
   "version": "0.0.1",
-  "description": "Tiny test colourful console reporter.",
-  "keywords": [],
-  "author": "Ferdinand Prantl <prantlf@gmail.com>",
+  "description": "Reports the test progress on the console with colours if the terminal supports them.",
+  "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/coco#readme",
+  "author": {
+    "name": "Ferdinand Prantl",
+    "email": "prantlf@gmail.com",
+    "url": "http://prantl.tk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prantlf/tehanu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/prantlf/tehanu/issues"
+  },
   "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/prantlf/tehanu/blob/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": ">=12"
+  },
   "files": [
     "index.js", "colors.js"
   ],
   "main": "index.js",
-  "types": "index.d.ts"
+  "types": "index.d.ts",
+  "keywords": [
+    "console",
+    "colors",
+    "tehanu-repo",
+    "test-reporter"
+  ]
 }
