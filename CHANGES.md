@@ -1,5 +1,9 @@
 # Changes
 
+## tehanu 0.0.3
+
+* Fix typescript type for the test callback.
+
 ## 0.0.2
 
 * Fix running in the browser.

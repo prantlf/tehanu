@@ -231,7 +231,7 @@ A reporter has to implement the `Reporter` interface:
 ```ts
 export interface Test {
   readonly name: string
-  readonly fn?: () => Promise
+  readonly fn?: () => void | Promise
 }
 
 interface Reporter {
