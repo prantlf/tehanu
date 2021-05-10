@@ -1,6 +1,6 @@
 {
   "name": "tehanu-teru",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Runs test suites written with tehanu in multiple source files.",
   "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/teru#readme",
   "author": {

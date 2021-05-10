@@ -1,6 +1,6 @@
 {
   "name": "tehanu-repo-tape",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Reports the test progress on the console using the TAP protocol format.",
   "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/tape#readme",
   "author": {
