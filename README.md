@@ -35,7 +35,7 @@ pnpm i -D tehanu tehanu-repo-coco
 ## Packages
 
 * [tehanu](./packages/index#readme) - a framework for creation and execution of test suites.
-* [teas](./packages/teas#readme) - a set of assertion methods compatible with the built-in `assert` module usable in both Node.js and the browser.
+* [teas](./packages/teas#readme) - a set of assertion methods compatible with the [built-in `assert` module] usable in both Node.js and the browser.
 * [teru](./packages/teru#readme) - an optional test runner for tests written with `tehanu`.
 * [coco](./packages/coco#readme) - a colourful console reporter.
 * [tape](./packages/tape#readme) - a reporter compatible with the [TAP] format specification.
@@ -50,4 +50,5 @@ Copyright (c) 2021 Ferdinand Prantl
 
 Licensed under the MIT license.
 
+[built-in `assert` module]: https://nodejs.org/api/assert.html
 [TAP]: https://node-tap.org/tap-protocol/
