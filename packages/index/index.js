@@ -26,7 +26,7 @@ async function run({ reporter, bail: abortAll, parallel, parallelSuites } = {}) 
   if (parallel) await Promise.all(suites.map(runSuite))
   else for (const suite of suites) await runSuite(suite)
   if (!aborted) end()
-  if (failed) process.exitCode = 1
+  if (failed && typeof process !== 'undefined') process.exitCode = 1
   return !failed
 
   async function runSuite(suite) {
@@ -97,7 +97,7 @@ function schedule() {
       }
     })
   else addEventListener('load', () => {
-    const { reporter, bail, parallel, parallelSuites, autostart } = tehanu
+    const { reporter, bail, parallel, parallelSuites, autostart } = window.tehanu || {}
     if (!started && autostart !== false) run({ reporter, bail, parallel, parallelSuites })
   })
 }
