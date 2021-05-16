@@ -1,5 +1,6 @@
 const { argv } = process,
-      patterns = []
+      patterns = [],
+      required = []
 let   reporter, bail, parallel, parallelSuites
 
 for (let i = 2, l = argv.length; i < l; ++i) {
@@ -10,6 +11,9 @@ for (let i = 2, l = argv.length; i < l; ++i) {
       case 'r': case 'reporter':
         reporter = argv[++i]
         if (reporter === 'coco' || reporter === 'tape') reporter = `tehanu-repo-${reporter}`
+        continue
+      case 'R': case 'require':
+        required.push(argv[++i])
         continue
       case 'b': case 'bail':
         bail = match[1] !== 'no'
@@ -31,6 +35,8 @@ for (let i = 2, l = argv.length; i < l; ++i) {
   }
   patterns.push(arg)
 }
+
+for (const name of required) require(name)
 
 let   pkg, tehanu, glob
 const { push } = Array.prototype,

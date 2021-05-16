@@ -5,6 +5,7 @@ Usage: teru [option ...] [pattern ...]
 
 Options:
   -r|--reporter <name>       choose a reporter (coco, tape or custom)
+  -R|--require <module>      preload a Node.js module to the process
   -b|--[no-]bail             abort after the first failure occurs
   -p|--[no-]parallel         execute test suites concurrently
   -s|--[no-]parallel-suites  execute tests in a suite concurrently
