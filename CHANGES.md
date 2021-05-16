@@ -1,5 +1,9 @@
 # Changes
 
+## teru 0.1.1
+
+* Fix version dependencies.
+
 ## teru 0.1.0
 
 * Add an option to preload Node.js modules.
