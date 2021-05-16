@@ -40,6 +40,29 @@ yarn add -D tehanu-teru
 pnpm i -D tehanu-teru
 ```
 
+## Usage
+
+Run tests written with Tehanu:
+
+    teru [option ...] [pattern ...]
+
+### Options
+
+    -r|--reporter <name>       choose a reporter (coco, tape or custom)
+    -R|--require <module>      preload a Node.js module to the process
+    -b|--[no-]bail             abort after the first failure occurs
+    -p|--[no-]parallel         execute test suites concurrently
+    -s|--[no-]parallel-suites  execute tests in a suite concurrently
+    -V|--version               print version number
+    -h|--help                  print usage instructions
+
+If no pattern is provided, `./**/*.js` will be used by default. If no reporter is provided, just errors will be printed on the console.
+
+### Examples
+
+    teru -b
+    teru -r tape test/*.js
+
 ## Alternative
 
 The alternative to the `teru` test runner is creating a test suite index and executing it by `node tests`:
