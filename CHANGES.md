@@ -1,5 +1,9 @@
 # Changes
 
+## teru 0.1.0
+
+* Add an option to preload Node.js modules.
+
 ## tehanu 0.0.3
 
 * Fix typescript type for the test callback.
