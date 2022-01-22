@@ -104,14 +104,20 @@ function schedule() {
 /* c8 ignore stop */
 
 function suite(name) {
+  /* c8 ignore start */
+  if (typeof window === 'undefined' && typeof name === 'string') {
+    const cwd = process.cwd()
+    if (name.startsWith(cwd)) name = name.substring(cwd.length + 1)
+  }
+  /* c8 ignore stop */
   const tests = [], only = [], before = [], after = [], beforeEach = [], afterEach = [],
-	      suite = (name, fn) => tests.push({ name, fn })
+	      suite = (name, fn) => tests.push({ name, fn })
   let   bail, parallel
   if (typeof name === 'object') ({ name, bail, parallel } = name)
 
   suite.test = suite
   suite.only = (name, fn) => only.push({ name, fn })
-  suite.skip = name => tests.push({ name })
+  suite.skip = name => tests.push({ name })
 
   suite.before = fn => before.push(fn)
   suite.after = fn => after.push(fn)
