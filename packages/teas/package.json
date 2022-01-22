@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@prantlf/esbuild": "^0.8.46",
-    "c8": "^7.7.2",
+    "c8": "^7.11.0",
     "tehanu": "workspace:*",
     "tehanu-repo-coco": "workspace:*",
     "tehanu-teru": "workspace:*"

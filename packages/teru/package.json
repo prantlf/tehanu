@@ -1,6 +1,6 @@
 {
   "name": "tehanu-teru",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Runs test suites written with tehanu in multiple source files.",
   "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/teru#readme",
   "author": {
@@ -34,7 +34,7 @@
   ],
   "dependencies": {
     "tehanu": "workspace:*",
-    "tiny-glob": "^0.2.8"
+    "tiny-glob": "^0.2.9"
   },
   "keywords": [
     "testing",

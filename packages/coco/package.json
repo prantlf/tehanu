@@ -1,7 +1,7 @@
 {
   "name": "tehanu-repo-coco",
   "version": "0.0.2",
-  "description": "Reports the test progress on the console with colours if the terminal supports them.",
+  "description": "Reports the test progress of tests written with tehanu on the console with colours if the terminal supports them.",
   "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/coco#readme",
   "author": {
     "name": "Ferdinand Prantl",

@@ -6,7 +6,7 @@
   },
   "devDependencies": {
     "esm": "^3.2.25",
-    "source-map-support": "^0.5.19",
+    "source-map-support": "^0.5.21",
     "tehanu": "workspace:*",
     "tehanu-teas": "workspace:*"
   }
