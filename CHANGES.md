@@ -1,5 +1,10 @@
 # Changes
 
+## tehanu 0.0.4, teru 0.1.2
+
+* Cut the relative path from the test suite name if __filename is specified.
+* Upgrade NPM dependencies.
+
 ## teru 0.1.1
 
 * Fix version dependencies.
