@@ -1,7 +1,7 @@
 ## Test Harness Ultra
 
-[![NPM version](https://badge.fury.io/js/tehanu.png)](http://badge.fury.io/js/tehanu)
-[![Build Status](https://github.com/prantlf/tehanu/workflows/Test/badge.svg)](https://github.com/prantlf/tehanu/actions)
+[![Latest version](https://img.shields.io/npm/v/tehanu)](https://www.npmjs.com/package/tehanu)
+[![Dependency status](https://img.shields.io/librariesio/release/npm/tehanu-teru)](https://www.npmjs.com/package/tehanu-teru)
 
 [Blazingly fast](./benchmarks#readme), tiny and simple JavaScript test framework for both Node.js and the browser with pluggable reporters and an optional runner.
 
