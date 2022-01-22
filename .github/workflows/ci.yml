@@ -1,13 +1,20 @@
-name: Release
+name: Test or Release
 
 on:
   push:
+    branches:
+    - master
     tags:
     - 'v[0-9]+.*'
+  pull_request:
+    types:
+    - opened
+    - reopened
+    - synchronize
 
 jobs:
-  create_release:
-    name: Create Release
+  test_or_release:
+    name: Test or Release
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.get_version.outputs.version }}
@@ -31,17 +38,18 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: pnpm recursive publish
+      if: startsWith(github.ref, 'refs/tags/')
     - name: Get Version
       id: get_version
       run: echo "::set-output name=version::$(echo "${{ github.ref }}" | sed 's/[^.0-9]\+//')"
-    - name: Checkout
-      uses: actions/checkout@v2
+      if: startsWith(github.ref, 'refs/tags/')
     - name: Describe Release
       run: |
         CHANGES=$(awk -v ver=${{ steps.get_version.outputs.version }} '/## / { if (p) { exit }; if ($2 == ver) { p=1; next } } p' CHANGES.md)
         echo "CHANGES<<EOF" >> $GITHUB_ENV
         echo "$CHANGES" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
+      if: startsWith(github.ref, 'refs/tags/')
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -53,3 +61,4 @@ jobs:
         draft: false
         prerelease: false
         body: ${{ env.CHANGES }}
+      if: startsWith(github.ref, 'refs/tags/')
