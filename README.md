@@ -5,11 +5,11 @@
 
 [Blazingly fast](./benchmarks#readme), tiny and simple JavaScript test framework for both Node.js and the browser with pluggable reporters and an optional runner.
 
-* Tiny size - 2.13 kB minified, 1.02 kB gzipped.
+* Tiny size - 2.28 kB minified, 1.09 kB gzipped, 968 B brotlied.
 * Zero dependencies.
-* TypeScript declaration included.
+* TypeScript declarations included.
 
-See the documentation of [packages](#packages) for more information.
+See the documentation of the [packages](#packages) for more information.
 
 ## Synopsis
 
