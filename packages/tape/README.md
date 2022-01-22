@@ -2,7 +2,7 @@
 
 [![NPM version](https://badge.fury.io/js/tehanu-repo-tape.png)](http://badge.fury.io/js/tehanu-repo-tape)
 
-Reports the test progress on the console using the [TAP] protocol format.
+Reports the test progress of tests written with [tehanu] on the console using the [TAP] protocol format.
 
 ## Synopsis
 
@@ -29,4 +29,5 @@ yarn add -D tehanu-repo-tape
 pnpm i -D tehanu-repo-tape
 ```
 
+[tehanu]: https://www.npmjs.com/package/tehanu
 [TAP]: https://node-tap.org/tap-protocol/

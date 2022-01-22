@@ -2,7 +2,7 @@
 
 [![NPM version](https://badge.fury.io/js/tehanu.png)](http://badge.fury.io/js/tehanu)
 
-Provides a framework for creation and execution of test suites.
+Provides a [framework] for creation and execution of test suites.
 
 ## Synopsis
 
@@ -245,3 +245,5 @@ interface Reporter {
   end(): void
 }
 ```
+
+[framework]: https://github.com/prantlf/tehanu#readme

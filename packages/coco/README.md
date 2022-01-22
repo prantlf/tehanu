@@ -2,7 +2,7 @@
 
 [![NPM version](https://badge.fury.io/js/tehanu-repo-coco.png)](http://badge.fury.io/js/tehanu-repo-coco)
 
-Reports the test progress on the console with colours if the terminal supports them.
+Reports the test progress of tests written with [tehanu] on the console with colours if the terminal supports them.
 
 ## Synopsis
 
@@ -32,3 +32,5 @@ pnpm i -D tehanu-repo-coco
 ## Configuration
 
 If the environment variable `NO_COLOR` is not empty, colouring the output will be disabled. If the environment variable `FORCE_COLOR` is not empty, colouring the output will be enabled, although the terminal support for colours will not be detected.
+
+[tehanu]: https://www.npmjs.com/package/tehanu

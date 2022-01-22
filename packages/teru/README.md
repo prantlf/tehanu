@@ -2,7 +2,7 @@
 
 [![NPM version](https://badge.fury.io/js/tehanu-teru.png)](http://badge.fury.io/js/tehanu-teru)
 
-Runs test suites written with `tehanu` in multiple source files.
+Runs test suites written with [tehanu] in multiple source files.
 
 ## Synopsis
 
@@ -73,3 +73,5 @@ tests.js:
 require('./sum1.test')
 require('./sum2.test')
 ```
+
+[tehanu]: https://www.npmjs.com/package/tehanu
