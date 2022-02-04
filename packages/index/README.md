@@ -11,7 +11,7 @@ Provides a [framework] for creation and execution of test suites.
 test.js:
 
 ```js
-const test = require('tehanu')(require('path').basename(__filename))
+const test = require('tehanu')(__filename)
 
 test('dummy', () => {})
 ```
@@ -35,6 +35,8 @@ const tehanu = require('tehanu')
 
 tehanu(name: string): (...) => void
 ```
+
+If the `name` of the suite is an absolute path and it starts with the current process path (`process.cwd()`), usually suplied as `__filename`, the leading current process path will be trimmed and only the relative path to the current process path will be used. If you want to trim all the path and leave just the file name, you can use the expression `require('path').basename(__filename)` instead of just `__filename`.
 
 Calling the test factory function will add another test to the test suite:
 
