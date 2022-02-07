@@ -1,6 +1,6 @@
 {
   "name": "tehanu-teru",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Runs test suites written with tehanu in multiple source files.",
   "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/teru#readme",
   "author": {
@@ -26,7 +26,8 @@
     "node": ">=12"
   },
   "bin": {
-    "teru": "index.js"
+    "teru": "index.js",
+    "tehanu": "index.js"
   },
   "files": [
     "index.js",

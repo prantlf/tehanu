@@ -46,6 +46,8 @@ Run tests written with Tehanu:
 
     teru [option ...] [pattern ...]
 
+If you use an NPM module with a conflicting binary, you can use the alias `tehanu` instead of `teru` to execute the tests.
+
 ### Options
 
     -r|--reporter <name>       choose a reporter (coco, tape or custom)

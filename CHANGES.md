@@ -1,5 +1,9 @@
 # Changes
 
+## teru 0.2.0
+
+* Add alias `tehanu` to the script `teru` to solve conflicts in some projects.
+
 ## tehanu 0.0.4, teru 0.1.2
 
 * Cut the relative path from the test suite name if __filename is specified.
