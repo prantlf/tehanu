@@ -77,7 +77,9 @@ async function run({ reporter, bail: abortAll, parallel, parallelSuites } = {}) 
 }
 
 /* c8 ignore start */
-function schedule() {
+function schedule({
+  autorun, reporter: reporter1, bail: bail1, parallel: parallel1, parallelSuites: parallelSuites1
+} = {}) {
   if (typeof window === 'undefined')
     setImmediate(() => {
       if (!started) {
@@ -88,8 +90,10 @@ function schedule() {
             ({ tehanu, devDependencies: deps } = JSON.parse(readFileSync(name, 'utf8')))
             break
           }
-        let { reporter, bail, parallel, parallelSuites, autostart } = tehanu || {}
-        if (autostart !== false) {
+        let {
+          reporter = reporter1, bail = bail1, parallel = parallel1, parallelSuites = parallelSuites1, autostart
+        } = tehanu || {}
+        if (!autorun || autostart !== false) {
           if (!reporter && deps)
             reporter = Object.keys(deps).find(dep => dep.startsWith('tehanu-repo-'))
           run({ reporter: reporter ? require(reporter) : log, bail, parallel, parallelSuites })
@@ -97,7 +101,9 @@ function schedule() {
       }
     })
   else addEventListener('load', () => {
-    const { reporter, bail, parallel, parallelSuites, autostart } = window.tehanu || {}
+    const {
+      reporter = reporter1, bail = bail1, parallel = parallel1, parallelSuites = parallelSuites1, autostart
+    } = window.tehanu || {}
     if (!started && autostart !== false) run({ reporter, bail, parallel, parallelSuites })
   })
 }
@@ -124,7 +130,7 @@ function suite(name) {
   suite.beforeEach = fn => beforeEach.push(fn)
   suite.afterEach = fn => afterEach.push(fn)
 
-  if (!suites.length) schedule()
+  if (!suites.length) schedule({ autorun: true })
 
   suites.push({ name, tests, only, before, after, beforeEach, afterEach, bail, parallel })
 
@@ -132,6 +138,7 @@ function suite(name) {
 }
 
 suite.run = run
+suite.schedule = schedule
 suite.suites = suites
 
 module.exports = suite

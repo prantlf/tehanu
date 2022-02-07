@@ -24,6 +24,7 @@ export interface RunOptions {
 }
 
 export function run(options?: RunOptions): Promise<boolean>
+export function schedule(options?: RunOptions): void
 
 export type Factory = (name: string, fn: Fn) => void
 

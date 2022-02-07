@@ -132,10 +132,10 @@ If your tests run in the browser, set the `autostart` property on the global `te
 (window.tehanu || (window.tehanu = {}).autostart = false
 ```
 
-The loaded tests can be executed manually using the `run` method:
+The loaded tests can be executed manually using either the `schedule` or the `run` method:
 
 ```ts
-const { run } = require('tehanu')
+const { run, schedule } = require('tehanu')
 
 interface Options {
   reporter?: Reporter,
@@ -145,9 +145,12 @@ interface Options {
 }
 
 run(options?: Options): Promise
+schedule(options?: Options): void
 ```
 
-The `tehanu` object in `package.json`, or in the browser, or the options for the `run` method can contain the following additional properties to control the test run:
+The method `schedule` ensures that the test suites are processed just once, even if it is called multiple times. It also reads the default options from the `tehanu` object in `package.json`, or in the browser. It also works well together with [teru]. The method `run` executes the test suites right away and is not compatible with [teru].
+
+The `tehanu` object in `package.json`, or in the browser, or the options for the `schedule` and `run` methods can contain the following additional properties to control the test run:
 
 * `bail`: if set to `true`, the test execution will be aborter after the first failure occurs.
 * `parallel`: if set to `true`, the test suites will be executed concurrently.
@@ -165,7 +168,7 @@ If you install one or multiple reporters as dependencies, the first one will be 
 
 ```json
 "devDependencies": {
-  "tehanu": "0.0.2",
+  "tehanu": "0.2.0",
   "tehanu-repo-coco": "0.0.2"
 }
 ```
@@ -177,7 +180,7 @@ If you install multiple reporters, you can choose one of them explicitly:
   "reporter": "tehanu-repo-tape"
 },
 "devDependencies": {
-  "tehanu": "0.0.2",
+  "tehanu": "0.2.0",
   "tehanu-repo-coco": "0.0.2",
   "tehanu-repo-tape": "0.0.2"
 }
@@ -205,10 +208,10 @@ If you run the tests in the browser, you can supply the reporter by the global `
 
 ### Programmatic
 
-If you execute the function `run` yourself, you can pass a `reporter` object to it:
+If you execute the functions `schedule` or `run` yourself, you can pass a `reporter` object to them:
 
 ```ts
-const { run } = require('tehanu')
+const { schedule } = require('tehanu')
 
 const reporter = {
   start() {},
@@ -225,7 +228,7 @@ ${stack}`)
   end() {}
 }
 
-run({ reporter })
+schedule({ reporter })
 ```
 
 A reporter has to implement the `Reporter` interface:
@@ -249,3 +252,4 @@ interface Reporter {
 ```
 
 [framework]: https://github.com/prantlf/tehanu#readme
+[teru]: ../teru#readme

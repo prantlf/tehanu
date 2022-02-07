@@ -66,12 +66,13 @@ if (!suites.length) {
   process.exit(3)
 }
 
-const { run } = require('tehanu'),
+const { schedule } = require('tehanu'),
       { resolve } = require('path')
 
 for (const suite of suites) require(resolve(suite))
 if (!reporter) reporter = getProp('reporter') || guessRepo()
-run({
+schedule({
+  autorun: true,
   reporter: reporter && require(reporter),
   bail: bail !== undefined ? bail : getProp('bail'),
   parallel: parallel !== undefined ? parallel : getProp('parallel'),
