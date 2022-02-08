@@ -2,7 +2,7 @@
 
 | Feature   | ava       | baretest  | jasmine   | jest      | mocha     | pta       | tap       | tape      | tehanu    | teru      | test      | uvu       | zora      |
 | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
-| Launch    |     950ms |      53ms |     168ms |    1.157s |     301ms |     200ms |     504ms |     210ms |      52ms |     105ms |      53ms |     143ms |      52ms |
+| Launch    |     957ms |      65ms |     176ms |    1.247s |     357ms |     239ms |     495ms |     218ms |      51ms |     100ms |      53ms |     142ms |      57ms |
 | Tarball   |  2.48 MiB |  6.42 KiB |  0.15 MiB |  8.94 MiB |  1.59 MiB |  0.34 MiB |  7.80 MiB |  0.56 MiB |  4.60 KiB | 13.50 KiB |  0.16 MiB |  0.14 MiB | 20.83 KiB |
 | Unpacked  |  9.39 MiB | 14.61 KiB |  0.54 MiB | 35.38 MiB |  6.03 MiB |  1.40 MiB | 34.79 MiB |  2.58 MiB | 11.89 KiB | 50.80 KiB |  1.64 MiB |  0.48 MiB |  0.10 MiB |
 | Reporters |    yes    |     no    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |

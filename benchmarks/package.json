@@ -4,16 +4,16 @@
     "ava": "^4.0.1",
     "baretest": "^2.0.0",
     "jasmine": "^4.0.2",
-    "jest": "^27.4.7",
-    "mocha": "^9.1.4",
+    "jest": "^27.5.0",
+    "mocha": "^9.2.0",
     "pta": "^1.0.2",
     "tap": "^15.1.6",
-    "tape": "^5.4.1",
+    "tape": "^5.5.0",
     "tehanu": "workspace:*",
     "tehanu-teru": "workspace:*",
     "tehanu-repo-tape": "workspace:*",
     "test": "^0.6.0",
     "uvu": "^0.5.3",
-    "zora": "^5.0.2"
+    "zora": "^5.0.3"
   }
 }
