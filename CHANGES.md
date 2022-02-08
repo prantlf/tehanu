@@ -1,5 +1,9 @@
 # Changes
 
+## teru 0.2.2
+
+* Move `tehanu` to peer dependencies of `teru`.
+
 ## tehanu 0.2.1
 
 * Stop using fs sync methods to read from `package.json`.
