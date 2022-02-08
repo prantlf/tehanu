@@ -81,15 +81,15 @@ function schedule({
   autorun, reporter: reporter1, bail: bail1, parallel: parallel1, parallelSuites: parallelSuites1
 } = {}) {
   if (typeof window === 'undefined')
-    setImmediate(() => {
+    setImmediate(async () => {
       if (!started) {
-        const { existsSync, readFileSync } = require('fs')
+        const { readFile } = require('fs').promises
         let tehanu, deps
         for (let i = 0, name = 'package.json'; i < 10; ++i, name = `../${name}`)
-          if (existsSync(name)) {
-            ({ tehanu, devDependencies: deps } = JSON.parse(readFileSync(name, 'utf8')))
+          try {
+            ({ tehanu, devDependencies: deps } = JSON.parse(await readFile(name, 'utf8')))
             break
-          }
+          } catch {}
         let {
           reporter = reporter1, bail = bail1, parallel = parallel1, parallelSuites = parallelSuites1, autostart
         } = tehanu || {}

@@ -1,5 +1,9 @@
 # Changes
 
+## tehanu 0.2.1
+
+* Stop using fs sync methods to read from `package.json`.
+
 ## tehanu 0.2.0, teru 0.2.1
 
 * Export `schedule` to allow executing the test suites manually and compatibly with `teru`.

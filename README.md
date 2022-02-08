@@ -5,7 +5,7 @@
 
 [Blazingly fast](./benchmarks#readme), tiny and simple JavaScript test framework for both Node.js and the browser with pluggable reporters and an optional runner.
 
-* Tiny size - 2.28 kB minified, 1.09 kB gzipped, 968 B brotlied.
+* Tiny size - 2.42 kB minified, 1.15 kB gzipped, 1.02 kB brotlied.
 * Zero dependencies.
 * TypeScript declarations included.
 
@@ -24,12 +24,12 @@ test('two numbers', () => assert.equal(sum(1, 2), 3))
 
 ## Installation
 
-You can install the [test harness](./packages/index#readme) with a chosen reporter using your favourite Node.js package manager:
+You can install the [test harness](./packages/index#readme), typically with a chosen reporter and optionally with the command-line runner using your favourite Node.js package manager:
 
 ```sh
-npm i -D tehanu tehanu-repo-coco
-yarn add -D tehanu tehanu-repo-coco
-pnpm i -D tehanu tehanu-repo-coco
+npm i -D tehanu tehanu-repo-coco tehanu-teru
+yarn add -D tehanu tehanu-repo-coco tehanu-teru
+pnpm i -D tehanu tehanu-repo-coco tehanu-teru
 ```
 
 ## Packages
