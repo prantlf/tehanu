@@ -112,8 +112,9 @@ importers:
       tehanu: workspace:*
       tiny-glob: ^0.2.9
     dependencies:
-      tehanu: link:../index
       tiny-glob: 0.2.9
+    devDependencies:
+      tehanu: link:../index
 
 packages:
 
