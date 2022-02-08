@@ -1,6 +1,6 @@
 {
   "name": "tehanu",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Blazingly fast, tiny and simple JavaScript test harness for Node.js and browser.",
   "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/index#readme",
   "author": {

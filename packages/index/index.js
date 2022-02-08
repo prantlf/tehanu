@@ -139,6 +139,7 @@ function suite(name) {
 
 suite.run = run
 suite.schedule = schedule
+suite.factory = suite
 suite.suites = suites
 
 module.exports = suite

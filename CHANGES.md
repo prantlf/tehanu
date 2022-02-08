@@ -2,7 +2,8 @@
 
 ## tehanu 0.2.0, teru 0.2.1
 
-* Export `schedule` to allow executing the test suites manually and compatibly with `teru``.
+* Export `schedule` to allow executing the test suites manually and compatibly with `teru`.
+* Export `factory` together with `schedule` to allow importing both of them as named exports.
 
 ## teru 0.2.0
 

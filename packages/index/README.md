@@ -135,7 +135,7 @@ If your tests run in the browser, set the `autostart` property on the global `te
 The loaded tests can be executed manually using either the `schedule` or the `run` method:
 
 ```ts
-const { run, schedule } = require('tehanu')
+const { schedule, run } = require('tehanu')
 
 interface Options {
   reporter?: Reporter,
@@ -144,8 +144,8 @@ interface Options {
   parallelSuites?: boolean
 }
 
-run(options?: Options): Promise
 schedule(options?: Options): void
+run(options?: Options): Promise
 ```
 
 The method `schedule` ensures that the test suites are processed just once, even if it is called multiple times. It also reads the default options from the `tehanu` object in `package.json`, or in the browser. It also works well together with [teru]. The method `run` executes the test suites right away and is not compatible with [teru].
@@ -211,7 +211,10 @@ If you run the tests in the browser, you can supply the reporter by the global `
 If you execute the functions `schedule` or `run` yourself, you can pass a `reporter` object to them:
 
 ```ts
-const { schedule } = require('tehanu')
+const { factory, schedule } = require('tehanu')
+const test = factory('sum')
+
+test('dummy', () => {})
 
 const reporter = {
   start() {},

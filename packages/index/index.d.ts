@@ -23,9 +23,6 @@ export interface RunOptions {
   parallelSuites?: boolean
 }
 
-export function run(options?: RunOptions): Promise<boolean>
-export function schedule(options?: RunOptions): void
-
 export type Factory = (name: string, fn: Fn) => void
 
 export interface Suite extends Factory {
@@ -37,5 +34,9 @@ export interface Suite extends Factory {
   beforeEach(fn: Fn): void
   afterEach(fn: Fn): void
 }
+
+export function factory(name: string): Suite
+export function schedule(options?: RunOptions): void
+export function run(options?: RunOptions): Promise<boolean>
 
 export default function suite(name: string): Suite
