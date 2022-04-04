@@ -83,11 +83,11 @@ function schedule({
   if (typeof window === 'undefined')
     setImmediate(async () => {
       if (!started) {
-        const { readFile } = require('fs').promises
+        const { readFileSync } = require('fs')
         let tehanu, deps
         for (let i = 0, name = 'package.json'; i < 10; ++i, name = `../${name}`)
           try {
-            ({ tehanu, devDependencies: deps } = JSON.parse(await readFile(name, 'utf8')))
+            ({ tehanu, devDependencies: deps } = JSON.parse(readFileSync(name, 'utf8')))
             break
           } catch {}
         let {

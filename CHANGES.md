@@ -1,5 +1,10 @@
 # Changes
 
+## tehanu 0.2.2
+
+* Fix occasional re-initialising the tests.
+  At least it did not lead to re-running the tests.
+
 ## teru 0.2.2
 
 * Move `tehanu` to peer dependencies of `teru`.
