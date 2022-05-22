@@ -1,6 +1,6 @@
 {
   "name": "tehanu",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "Blazingly fast, tiny and simple JavaScript test harness for Node.js and browser.",
   "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/index#readme",
   "author": {
@@ -26,20 +26,24 @@
     "node": ">=12"
   },
   "files": [
+    "lib",
     "dist"
   ],
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "lib/index.cjs",
+  "module": "lib/index.mjs",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./lib/index.cjs",
+      "import": "./lib/index.mjs"
+    },
+    "./suite": "./lib/suite.mjs"
+  },
   "scripts": {
-    "prepare": "node build && cp index.d.ts dist",
-    "test": "c8 node -r source-map-support/register test"
+    "prepare": "node build",
+    "test": "node --enable-source-maps test/index.mjs && node --enable-source-maps test/suite.mjs && c8 node --enable-source-maps test/index.cjs"
   },
   "c8": {
-    "include": [
-      "index.js",
-      "dist/index.js"
-    ],
     "check-coverage": true,
     "reporter": [
       "lcov",
@@ -54,9 +58,8 @@
     "autostart": false
   },
   "devDependencies": {
-    "@prantlf/esbuild": "^0.8.46",
-    "c8": "^7.11.0",
-    "source-map-support": "^0.5.21",
+    "c8": "^7.11.3",
+    "esbuild": "^0.14.39",
     "tehanu-repo-tape": "workspace:*"
   },
   "keywords": [
@@ -64,6 +67,7 @@
     "testing",
     "unit-testing",
     "test-framework",
+    "testing-framework",
     "test-harness",
     "test-runner"
   ]

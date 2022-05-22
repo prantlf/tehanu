@@ -1,0 +1,22 @@
+export default function() {
+  console.log(`Runs tests written with Tehanu in Chromium.
+
+Usage: tenbo [option ...] [pattern ...]
+
+Options:
+  -o|--port <number>      port for the web server to listen to (default: 8012)
+  -l|--launcher <module>  puppeteer module name (default: puppeteer)
+  -e|--executable <path>  override path to the Chromium executable
+  -a|--[no-]headless      enable headless mode (default: true)
+  -d|--[no-]disconnect    just disconnect from the browser at the end
+  -v|--[no-]verbose       print more diagnostics on the console
+  -V|--version            print version number and exit
+  -h|--help               print usage instructions and exit
+
+If no pattern is provided, ./**/*.js will be used by default.
+
+Examples:
+  tenbo -l puppeteer-core
+  tenbo -A -d test/*.js`)
+  process.exit(0)
+}

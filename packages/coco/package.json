@@ -1,6 +1,6 @@
 {
   "name": "tehanu-repo-coco",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Reports the test progress of tests written with tehanu on the console with colours if the terminal supports them.",
   "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/coco#readme",
   "author": {
@@ -23,13 +23,25 @@
     }
   ],
   "engines": {
-    "node": ">=12"
+    "node": ">=14.13"
+  },
+  "main": "dist/index.cjs",
+  "module": "lib/index.mjs",
+  "types": "lib/index.d.ts",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "import": "./lib/index.mjs"
   },
   "files": [
-    "index.js", "colors.js"
+    "lib",
+    "dist"
   ],
-  "main": "index.js",
-  "types": "index.d.ts",
+  "scripts": {
+    "prepare": "rollup -c"
+  },
+  "devDependencies": {
+    "rollup": "^2.74.0"
+  },
   "keywords": [
     "console",
     "colors",

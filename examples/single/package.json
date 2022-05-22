@@ -1,6 +1,7 @@
 {
   "private": true,
   "description": "Example of a test suite.",
+  "type": "commonjs",
   "scripts": {
     "test": "node . || echo Done."
   },

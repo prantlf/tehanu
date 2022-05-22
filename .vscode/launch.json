@@ -52,6 +52,15 @@
       "skipFiles": [
         "<node_internals>/**"
       ]
+    },
+    {
+      "name": "tehanu/test esm",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/packages/index/test.mjs",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
     }
   ]
 }

@@ -8,10 +8,28 @@ Provides a [framework] for creation and execution of test suites.
 
 ![Install and run](./install-run.png)
 
-test.js:
+test.cjs:
 
 ```js
 const test = require('tehanu')(__filename)
+
+test('dummy', () => {})
+```
+
+test.mjs:
+
+```js
+import tehanu from 'tehanu'
+
+const test = tehanu('sum')
+
+test('dummy', () => {})
+```
+
+test.mjs (unnamed suite):
+
+```js
+import test from 'tehanu/suite'
 
 test('dummy', () => {})
 ```
@@ -28,25 +46,39 @@ pnpm i -D tehanu
 
 ## Test Suite
 
-The default export of the `tehanu` module is a test suite factory function. Calling it will create a new test suite and return a test factory function:
+The default export of the `tehanu` module:
+
+```js
+const tehanu = require('tehanu')
+```
+
+is a test suite factory function:
 
 ```ts
-const tehanu = require('tehanu')
-
 tehanu(name: string): (...) => void
 ```
 
-If the `name` of the suite is an absolute path and it starts with the current process path (`process.cwd()`), usually suplied as `__filename`, the leading current process path will be trimmed and only the relative path to the current process path will be used. If you want to trim all the path and leave just the file name, you can use the expression `require('path').basename(__filename)` instead of just `__filename`.
+If the `name` of the suite is an absolute path and it starts with the current process path (`process.cwd()`), usually supplied as `__filename`, the leading current process path will be trimmed and only the relative path to the current process path will be used. If you want to trim all the path and leave just the file name, you can use the expression `require('path').basename(__filename)` instead of just `__filename`.
 
-Calling the test factory function will add another test to the test suite:
+Calling test suite factory function will create a new test suite:
+
+```js
+const test = tehanu(__filename)
+```
+
+and return a test factory function:
 
 ```ts
-const test = tehanu(...)
-
 test(name: string, fn: () => void | Promise): void
 ```
 
-A test suite is usually alone in a single test file: 
+Calling the test factory function will add another test to the test suite:
+
+```js
+test('one number', () => ...)
+```
+
+A test suite is usually alone in a single test file:
 
 ```js
 const test = require('tehanu')(__filename)
@@ -72,9 +104,28 @@ require('./sum1.test')
 require('./sum2.test')
 ```
 
+ESM modules are supported too:
+
+```js
+import tehanu from 'tehanu'
+import { fileURLToPath } from 'url'
+
+const test = tehanu(fileURLToPath(import.meta.url))
+
+test('one number', () => ...)
+```
+
+with a shortcut to an unnamed test suite creation:
+
+```js
+import test from 'tehanu/suite'
+
+test('one number', () => ...)
+```
+
 ## Setup and Tear Down
 
-The test factory function exposes methods to add callbacks to execute before and after the tests:
+The test factory function carries properties exposing methods for adding callbacks to execute before and after the tests:
 
 ```ts
 // Adds callbacks to execute before and after all tests in a test suite
@@ -96,7 +147,7 @@ test('one number', () => ...)
 
 ## Limiting and Skipping Tests
 
-The test factory function exposes methods to limit the test execution only to selected tests and to skip selected tests:
+The test factory function carries properties exposing methods for limiting the test execution only to selected tests and to skip selected tests:
 
 ```ts
 // Adds the test to a limited set of tests to execute
@@ -168,8 +219,8 @@ If you install one or multiple reporters as dependencies, the first one will be 
 
 ```json
 "devDependencies": {
-  "tehanu": "0.2.1",
-  "tehanu-repo-coco": "0.0.2"
+  "tehanu": "1.0.0",
+  "tehanu-repo-coco": "1.0.0"
 }
 ```
 
@@ -180,17 +231,17 @@ If you install multiple reporters, you can choose one of them explicitly:
   "reporter": "tehanu-repo-tape"
 },
 "devDependencies": {
-  "tehanu": "0.2.1",
-  "tehanu-repo-coco": "0.0.2",
-  "tehanu-repo-tape": "0.0.2"
+  "tehanu": "1.0.0",
+  "tehanu-repo-coco": "1.0.0",
+  "tehanu-repo-tape": "1.0.0"
 }
 ```
 
 If you run the tests in the browser, you can supply the reporter by the global `tehanu` object:
 
 ```html
-<script src=node_modules/tehanu/dist/index.umd.min.js></script>
-<script src=node_modules/tehanu-repo-tape/dist/index.umd.min.js></script>
+<script src=node_modules/tehanu/dist/index.min.js></script>
+<script src=node_modules/tehanu-repo-tape/dist/index.min.js></script>
 <script src=test/index.js></script>
 <script>
   (window.tehanu || (window.tehanu = {}).reporter = tehanuTape
@@ -199,10 +250,25 @@ If you run the tests in the browser, you can supply the reporter by the global `
 
 ```html
 <script type=module>
-  import tape from 'node_modules/tehanu-repo-tape/dist/index.esm.min.js'
+  import tape from 'node_modules/tehanu-repo-tape/dist/index.min.mjs'
   import 'test/dist/index.js'
 
   (window.tehanu || (window.tehanu = {}).reporter = tape
+</script>
+```
+
+But you do not have to do it with `tape`, because this reporter registers to the `tehanu` object automatically for convenience:
+
+```html
+<script src=node_modules/tehanu/dist/index.min.js></script>
+<script src=node_modules/tehanu-repo-tape/dist/index.min.js></script>
+<script src=test/index.js></script>
+```
+
+```html
+<script type=module>
+  import 'node_modules/tehanu-repo-tape/dist/index.min.mjs'
+  import 'test/dist/index.js'
 </script>
 ```
 

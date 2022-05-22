@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "description": "Example of a test suite.",
+  "scripts": {
+    "start": "open http://localhost:8000/examples/browser-esm/index.html",
+    "test": "tenbo -o 8016 index.html"
+  },
+  "devDependencies": {
+    "tehanu": "workspace:*",
+    "tehanu-repo-tape": "workspace:*",
+    "tehanu-teas": "workspace:*",
+    "tehanu-tenbo": "workspace:*"
+  }
+}

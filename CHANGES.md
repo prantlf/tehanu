@@ -1,5 +1,23 @@
 # Changes
 
+## tehanu 1.0.0, teru 1.0.0, teas 1.0.0, tape 1.0.0, coco 1.0.0, tenbo: 0.0.1
+
+* Support ESM projects in Node.js and in the browser.
+* Export `get` and `set` methods to read and write configuration parameters,
+  which are usually passed by the `tehanu` object from `pacjkage.json`
+  or `window` (in the browser), but it may be useful to access them from
+  test scripts too.
+* Add an ESM runner in Node.js - teru-esm.
+* Add another alias for CJS/UMD runner in Node.js - teru-cjs.
+* Add an experimental runner in browser - tenbo.
+* Complete the assertions in teas to match Node.js 18.
+* Replace `esbuild` with `swc` and use it only for minification. Bundle
+  with `rollup`. (`esbuild` doesn't support UMD and I don't have time
+  to maintain `@prantlf/esbuild` any more. `rollup` produces the most
+  readable output, which is useful, if source maps fail.)
+
+**NOTE:** The ESM support needs Node.js 14.13 or newer.
+
 ## tehanu 0.2.2
 
 * Fix occasional re-initialising the tests.

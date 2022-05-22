@@ -1,6 +1,6 @@
 {
   "name": "tehanu-teru",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "Runs test suites written with tehanu in multiple source files.",
   "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/teru#readme",
   "author": {
@@ -23,24 +23,29 @@
     }
   ],
   "engines": {
-    "node": ">=12"
+    "node": ">=14.13"
   },
   "bin": {
-    "teru": "index.js",
-    "tehanu": "index.js"
+    "teru": "lib/index.cjs",
+    "tehanu": "lib/index.cjs",
+    "teru-cjs": "lib/index.cjs",
+    "teru-esm": "lib/index.mjs"
   },
   "files": [
-    "index.js",
-    "help.js"
+    "lib"
   ],
+  "scripts": {
+    "test": "node lib/index.cjs test/index.cjs || node lib/index.mjs test/index.mjs || echo Done."
+  },
   "dependencies": {
     "tiny-glob": "^0.2.9"
   },
   "devDependencies": {
-    "tehanu": "workspace:*"
+    "tehanu": "workspace:*",
+    "tehanu-repo-coco": "workspace:*"
   },
   "peerDependencies": {
-    "tehanu": "^0.2.1"
+    "tehanu": "^1.0.0"
   },
   "keywords": [
     "testing",

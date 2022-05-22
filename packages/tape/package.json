@@ -1,6 +1,6 @@
 {
   "name": "tehanu-repo-tape",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Reports the test progress of tests written with tehanu on the console using the TAP protocol format.",
   "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/tape#readme",
   "author": {
@@ -23,19 +23,25 @@
     }
   ],
   "engines": {
-    "node": ">=12"
+    "node": ">=14.13"
+  },
+  "main": "dist/index.cjs",
+  "module": "lib/index.mjs",
+  "types": "lib/index.d.ts",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "import": "./lib/index.mjs"
   },
   "files": [
+    "lib",
     "dist"
   ],
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
   "scripts": {
-    "prepare": "node build && cp index.d.ts dist"
+    "prepare": "rollup -c && cp lib/index.d.ts dist"
   },
   "devDependencies": {
-    "@prantlf/esbuild": "^0.8.46"
+    "rollup": "^2.74.0",
+    "rollup-plugin-swc-minify": "^1.0.1"
   },
   "keywords": [
     "tap",

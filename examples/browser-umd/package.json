@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "description": "Example of a test suite.",
+  "scripts": {
+    "start": "open test.html",
+    "test": "tenbo -o 8017 index.html"
+  },
+  "devDependencies": {
+    "tehanu": "workspace:*",
+    "tehanu-repo-tape": "workspace:*",
+    "tehanu-teas": "workspace:*",
+    "tehanu-tenbo": "workspace:*"
+  }
+}

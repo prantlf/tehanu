@@ -4,9 +4,6 @@
   "scripts": {
     "test": "node . || echo Done."
   },
-  "tehanu": {
-    "reporter": "tehanu-repo-tape"
-  },
   "devDependencies": {
     "tehanu": "workspace:*",
     "tehanu-repo-tape": "workspace:*"

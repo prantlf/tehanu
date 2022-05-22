@@ -12,20 +12,20 @@ sum1.test.js:
 
 ```js
 const test = require('tehanu')('sum1'),
-      assert = require('assert'),
+      { equal } = require('assert'),
       sum = require('./sum')
 
-test('one number', () => assert.equal(sum(1), 1))
+test('one number', () => equal(sum(1), 1))
 ```
 
 sum2.test.js:
 
 ```js
 const test = require('tehanu')('sum2'),
-      assert = require('assert'),
+      { equal } = require('assert'),
       sum = require('./sum')
 
-test('two numbers', () => assert.equal(sum(1, 2), 3))
+test('two numbers', () => equal(sum(1, 2), 3))
 ```
 
 Running `teru *.test.js` or `teru sum1.test.js sum2.test.js` allows executing some or all test suites.
@@ -46,7 +46,7 @@ Run tests written with Tehanu:
 
     teru [option ...] [pattern ...]
 
-If you use an NPM module with a conflicting binary, you can use the alias `tehanu` instead of `teru` to execute the tests.
+If you use an NPM module with a conflicting binary, you can use aliases `tehanu` or `teru-cjs` instead of `teru` to execute the tests. If your tests are in the ESM format, use only `teru-esm` to run them.
 
 ### Options
 
