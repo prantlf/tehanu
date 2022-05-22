@@ -13,7 +13,8 @@ const { promisify } = require('util'),
         tehanu: ['node', 'suites/tehanu'],
         teru: ['./node_modules/.bin/teru', '-r', 'tape', 'suites/teru'],
         test: ['node', 'suites/test'],
-        uvu: ['./node_modules/.bin/uvu', 'suites/uvu'],
+        uvu: ['node', 'suites/uvu'],
+        'uvu-cli': ['./node_modules/.bin/uvu', 'suites/uvu'],
         zora: ['node', 'suites/zora']
       }
 
