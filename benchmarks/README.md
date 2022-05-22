@@ -2,7 +2,7 @@
 
 | Feature   | ava       | baretest  | jasmine   | jest      | mocha     | pta       | tap       | tape      | tehanu    | teru      | test      | uvu       | zora      |
 | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
-| Launch    |     957ms |      65ms |     176ms |    1.247s |     357ms |     239ms |     495ms |     218ms |      51ms |     100ms |      53ms |     142ms |      57ms |
+| Launch    |    1.147s |      64ms |     203ms |    1.995s |     412ms |     253ms |     653ms |     313ms |      63ms |     134ms |      68ms |     183ms |      64ms |
 | Tarball   |  2.48 MiB |  6.42 KiB |  0.15 MiB |  8.94 MiB |  1.59 MiB |  0.34 MiB |  7.80 MiB |  0.56 MiB |  4.60 KiB | 13.50 KiB |  0.16 MiB |  0.14 MiB | 20.83 KiB |
 | Unpacked  |  9.39 MiB | 14.61 KiB |  0.54 MiB | 35.38 MiB |  6.03 MiB |  1.40 MiB | 34.79 MiB |  2.58 MiB | 11.89 KiB | 50.80 KiB |  1.64 MiB |  0.48 MiB |  0.10 MiB |
 | Reporters |    yes    |     no    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |
@@ -10,6 +10,7 @@
 | Threads   |    yes    |     no    |     no    |    yes    |     no    |     no    |     no    |     no    |     no    |     no    |     no    |     no    |     no    |
 | Continue  |    yes    |     no    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |
 | Bail out  |    yes    |    yes    |    yes    |    yes    |     no    |     no    |     no    |     no    |    yes    |    yes    |     no    |     no    |     no    |
+| Launcher  |    yes    |     no    |    yes    |    yes    |    yes    |    yes    |    yes    |    yes    |     no    |    yes    |     no    |     no    |     no    |
 
 ## Metrics
 
@@ -21,3 +22,4 @@
 * **Threads**: Can execute test suites concurrently using worker threads. Improves performance using multiple CPUs if multiple suites are used.
 * **Continue**: Can execute tests after some of them fail. Usual approach in CI/CD pipelines.
 * **Bail out**: Can abort the test execution after the first failure occurs. Usual approach in the development environment.
+* **Launcher**: Was the test run by a launcher script, or were they executed from within the test script? Using a launcher adds an overhead, but offers command-line parameters to control thetest run withtout modifying the test sources.
