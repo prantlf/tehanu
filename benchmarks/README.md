@@ -22,4 +22,4 @@
 * **Threads**: Can execute test suites concurrently using worker threads. Improves performance using multiple CPUs if multiple suites are used.
 * **Continue**: Can execute tests after some of them fail. Usual approach in CI/CD pipelines.
 * **Bail out**: Can abort the test execution after the first failure occurs. Usual approach in the development environment.
-* **Launcher**: Was the test run by a launcher script, or were they executed from within the test script? Using a launcher adds an overhead, but offers command-line parameters to control thetest run withtout modifying the test sources.
+* **Launcher**: Was the test run by a launcher script, or were they executed from within the test script? Using a launcher adds an overhead, but offers command-line parameters to control test run without modifying the test sources.
