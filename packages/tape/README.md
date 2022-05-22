@@ -4,6 +4,8 @@
 
 Reports the test progress of tests written with [tehanu] on the console using the [TAP] protocol format.
 
+Any [output formatter consuming TAP] can be used to re-format or otherwise process the printed output.
+
 ## Synopsis
 
 ![TAP reporter](./run-tape.png)
@@ -31,3 +33,4 @@ pnpm i -D tehanu-repo-tape
 
 [tehanu]: https://www.npmjs.com/package/tehanu
 [TAP]: https://node-tap.org/tap-protocol/
+[output formatter consuming TAP]: https://www.npmjs.com/search?q=tap%20reporter
