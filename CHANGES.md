@@ -1,5 +1,14 @@
 # Changes
 
+## tape 1.0.1
+
+* Fix formatting of error message, location and call stack
+
+## tehanu 1.0.1
+
+* Cut relative path from file URL too, not only from absolute path
+* Cut the JavaScript file extension from the suite name based on file path
+
 ## tehanu 1.0.0, teru 1.0.0, teas 1.0.0, tape 1.0.0, coco 1.0.0, tenbo: 0.0.1
 
 * Support ESM projects in Node.js and in the browser.

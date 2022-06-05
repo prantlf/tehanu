@@ -1,6 +1,6 @@
 {
   "name": "tehanu-repo-tape",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reports the test progress of tests written with tehanu on the console using the TAP protocol format.",
   "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/tape#readme",
   "author": {
@@ -40,8 +40,8 @@
     "prepare": "rollup -c && cp lib/index.d.ts dist"
   },
   "devDependencies": {
-    "rollup": "^2.74.0",
-    "rollup-plugin-swc-minify": "^1.0.1"
+    "rollup": "^2.75.5",
+    "rollup-plugin-swc-minify": "^1.0.2"
   },
   "keywords": [
     "tap",

@@ -58,7 +58,7 @@ is a test suite factory function:
 tehanu(name: string): (...) => void
 ```
 
-If the `name` of the suite is an absolute path and it starts with the current process path (`process.cwd()`), usually supplied as `__filename`, the leading current process path will be trimmed and only the relative path to the current process path will be used. If you want to trim all the path and leave just the file name, you can use the expression `require('path').basename(__filename)` instead of just `__filename`.
+If the `name` of the suite is an absolute path and it starts with the current process path (`process.cwd()`), usually supplied as `__filename`, the leading current process path will be trimmed and only the relative path to the current process path will be used. If you want to trim all the path and leave just the file name, you can use the expression `require('path').basename(__filename)` instead of just `__filename`. The same will work with `import.meta.url` in ES modules.
 
 Calling test suite factory function will create a new test suite:
 
@@ -108,9 +108,8 @@ ESM modules are supported too:
 
 ```js
 import tehanu from 'tehanu'
-import { fileURLToPath } from 'url'
 
-const test = tehanu(fileURLToPath(import.meta.url))
+const test = tehanu(import.meta.url)
 
 test('one number', () => ...)
 ```

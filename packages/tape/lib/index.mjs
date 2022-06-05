@@ -12,11 +12,18 @@ export function ok({ name }) {
   console.log(`ok ${++count} - ${name}`)
 }
 
-export function fail({ name }, { stack }) {
+export function fail({ name }, { message, stack }) {
+  let lines = stack.split('\n');
+  let at = lines.findIndex(line => line.startsWith('    at '));
+  stack = lines.map((line, index) => `    ${line}`).join('\n');
   console.log(`not ok ${++count} - ${name}
-
+  ---
+  message: ${message}
+  at: ${at > 0 && lines[at].substring(7)}
+  stack: |-
 ${stack}
-`)
+  ...
+`);
 }
 
 export function bail() {

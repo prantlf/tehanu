@@ -124,12 +124,15 @@ function schedule({
 /* c8 ignore stop */
 
 function suite(name) {
-  /* c8 ignore start */
+  /* c8 ignore next 8 */
   if (typeof name === 'string') {
     const cwd = process.cwd()
-    if (name.startsWith(cwd)) name = name.substring(cwd.length + 1)
+    const start = name.indexOf(cwd)
+    if (start >= 0) {
+      const end = name.endsWith('.js') ? 3 : name.endsWith('.mjs') || name.endsWith('.cjs') ? 4 : 0
+      name = name.substring(start + cwd.length + 1, name.length - end)
+    }
   }
-  /* c8 ignore stop */
   const tests = [], only = [], before = [], after = [], beforeEach = [], afterEach = [],
         suite = (name, fn) => tests.push({ name, fn })
   let   bail, parallel

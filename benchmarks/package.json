@@ -1,7 +1,7 @@
 {
   "private": true,
   "devDependencies": {
-    "ava": "^4.2.0",
+    "ava": "^4.3.0",
     "baretest": "^2.0.0",
     "jasmine": "^4.1.0",
     "jest": "^28.1.0",
