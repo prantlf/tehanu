@@ -35,7 +35,7 @@
     "lib"
   ],
   "scripts": {
-    "test": "node lib/index.cjs test/index.cjs || node lib/index.mjs test/index.mjs || echo Done."
+    "test": "node lib/index.cjs test/index.cjs || node lib/index.mjs test/index.mjs || test true"
   },
   "dependencies": {
     "tiny-glob": "^0.2.9"

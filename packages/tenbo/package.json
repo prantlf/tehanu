@@ -1,6 +1,6 @@
 {
   "name": "tehanu-tenbo",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Runs test suites written with tehanu in a browser.",
   "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/tenbo#readme",
   "author": {
@@ -32,7 +32,7 @@
     "lib"
   ],
   "scripts": {
-    "test": "node lib/index.mjs test/index.js && node lib/index.mjs -o 8013 test/index.html"
+    "test": "node lib/index.mjs test/index.js || echo '' && node lib/index.mjs -o 8013 test/index.html || test true"
   },
   "dependencies": {
     "colorette": "^2.0.17",

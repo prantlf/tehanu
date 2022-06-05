@@ -2,7 +2,7 @@
   "private": true,
   "description": "Example of a test suite.",
   "scripts": {
-    "test": "node . || echo Done."
+    "test": "node . || test true"
   },
   "devDependencies": {
     "tehanu": "workspace:*",

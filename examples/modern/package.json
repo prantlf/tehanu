@@ -3,7 +3,7 @@
   "description": "Example of a test suite.",
   "type": "module",
   "scripts": {
-    "test": "node . || echo Done."
+    "test": "node . || test true"
   },
   "devDependencies": {
     "tehanu": "workspace:*",

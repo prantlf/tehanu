@@ -1,5 +1,10 @@
 # Changes
 
+## tenbo 0.1.0
+
+* Add parameter `-t|--timeout=ms` to fail the tests if a log or a network request does not occur in time.
+* Set `process.exitCode = 1` is a test failed.
+
 ## tape 1.0.1
 
 * Fix formatting of error message, location and call stack

@@ -3,7 +3,7 @@
   "description": "Example of a test suite.",
   "scripts": {
     "start": "open http://localhost:8000/examples/browser-esm/index.html",
-    "test": "tenbo -o 8016 index.html"
+    "test": "tenbo -o 8016 index.html || test true"
   },
   "devDependencies": {
     "tehanu": "workspace:*",

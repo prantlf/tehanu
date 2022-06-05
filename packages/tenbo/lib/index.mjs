@@ -2,10 +2,9 @@ import { blue, cyan, green, magenta, red, yellow } from 'colorette'
 import polka from 'polka'
 import sirv from 'sirv'
 
-const { argv } = process,
-      patterns = []
-let   verbose,
-      port = 8012, headless = true, disconnect, launcher, executablePath
+const { argv } = process, patterns = []
+let   port = 8012, headless = true, timeout = 1000,
+      verbose, disconnect, launcher, executablePath
 
 for (let i = 2, l = argv.length; i < l; ++i) {
   const arg = argv[i]
@@ -16,17 +15,20 @@ for (let i = 2, l = argv.length; i < l; ++i) {
       case 'o': case 'port':
         port = +argv[++i]
         continue
-      case 'a': case 'A': case 'headless':
-        headless = opt === 'A' ? false : match[1] !== 'no'
-        continue
-      case 'd': case 'disconnect':
-        disconnect = match[1] !== 'no'
-        continue
       case 'l': case 'launcher':
         launcher = argv[++i]
         continue
       case 'e': case 'executable':
         executablePath = argv[++i]
+        continue
+      case 't': case 'timeout':
+        timeout = +argv[++i]
+        continue
+      case 'a': case 'A': case 'headless':
+        headless = opt === 'A' ? false : match[1] !== 'no'
+        continue
+      case 'd': case 'disconnect':
+        disconnect = match[1] !== 'no'
         continue
       case 'v': case 'verbose':
         verbose = match[1] !== 'no'
@@ -77,7 +79,7 @@ const { push } = Array.prototype,
     process.exit(3)
   }
 
-  let pageUrl = suites[0], pageContent
+  let [pageUrl] = suites, pageContent
   if (pageUrl.endsWith('.html')) {
     pageUrl = `/${pageUrl}`
   } else {
@@ -91,11 +93,14 @@ const { push } = Array.prototype,
 
   const server = serve({ port, pageUrl, pageContent, verbose })
   try {
-    const browser = await browse({
-      launcher, headless, executablePath, pageUrl, verbose
-    })
-    if (disconnect) browser.disconnect()
-    else browser.close()
+    const browser = await launch()
+    try {
+      await open(browser, pageUrl)
+    } finally {
+      if (browser)
+        if (disconnect) browser.disconnect()
+        else browser.close()
+    }
   } finally {
     if (!disconnect) server.close()
   }
@@ -122,18 +127,9 @@ function serve({ port, pageUrl, pageContent, verbose }) {
   return app.server
 }
 
-async function browse({
-  launcher, headless, executablePath, pageUrl, verbose
-}) {
-  const { env } = process
-  const { default: puppeteer } = (await import(launcher || 'puppeteer'))
-  const browser = await puppeteer.launch({
-    headless, args: env.CI ? ['--no-sandbox'] : [],
-    executablePath: executablePath || env.PUPPETEER_EXECUTABLE_PATH,
-    dumpio: false, devtools: false, userDataDir: undefined
-  })
-  try {
-    const page = await browser.newPage()
+function collect(page, waiting) {
+  return new Promise((resolve, reject) => {
+    let failed
     page
       .on('console', message => {
         const text = message.text()
@@ -150,15 +146,68 @@ async function browse({
         } else {
           console.log(text)
         }
+        waiting.start()
+        if (text.startsWith('not ok'))
+          failed = true
+        else if (text.match(/^\d+\.\.\d+$/))
+          if (failed) reject()
+          else resolve()
       })
-      .on('pageerror', ({ message }) => verbose && console.log(red(message)))
-      .on('response', response =>
-        verbose && console.log(green(`${response.status()} ${response.url()}`)))
-      .on('requestfailed', request =>
-        verbose && console.log(magenta(`${request.failure().errorText} ${request.url()}`)))
-    await page.goto(`http://localhost:${port}${pageUrl}`)
-  } catch({ message }) {
-    console.log(red(message))
+      .on('response', response => {
+        verbose && console.info(green(`${response.status()} ${response.url()}`))
+        waiting.start()
+      })
+      .on('pageerror', ({ message }) => {
+        if (verbose) message = red(message)
+        console.error(message)
+        failed = true
+      })
+      .on('requestfailed', request => verbose &&
+        console.warn(magenta(`${request.failure().errorText} ${request.url()}`)))
+  })
+}
+
+function wait() {
+  let handler, fail
+  const promise = new Promise((resolve, reject) => fail = reject)
+  promise.abort = () => clearTimeout(handler)
+  promise.start = () => {
+    if (handler) clearTimeout(handler)
+    handler = setTimeout(() => fail(new Error('Test timeout')), timeout)
   }
-  return browser
+  return promise
+}
+
+async function launch() {
+  const { env } = process
+  const { default: puppeteer } = (await import(launcher || 'puppeteer'))
+
+  return await puppeteer.launch({
+    headless, args: env.CI ? ['--no-sandbox'] : [],
+    executablePath: executablePath || env.PUPPETEER_EXECUTABLE_PATH,
+    dumpio: false, devtools: false, userDataDir: undefined
+  })
+}
+
+async function open(browser, pageUrl) {
+  let page, waiting
+  try {
+    verbose && console.log(cyan(`INF Opening ${pageUrl}`))
+    page = await browser.newPage()
+    waiting = wait()
+    const collecting = collect(page, waiting)
+    await page.goto(`http://localhost:${port}${pageUrl}`)
+    waiting.start()
+    await Promise.race([collecting, waiting])
+  } catch (error) {
+    if (error) {
+      let message = verbose ? error : error.message
+      if (verbose) message = red(message)
+      console.error(message)
+    }
+    process.exitCode = 1
+  } finally {
+    if (waiting) waiting.abort()
+    if (page && !disconnect) page.close()
+  }
 }

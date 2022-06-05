@@ -2,7 +2,7 @@
   "private": true,
   "description": "Example of a test suite.",
   "scripts": {
-    "test": "tenbo -o 8015 index.js"
+    "test": "tenbo -o 8015 index.js || test true"
   },
   "devDependencies": {
     "tehanu": "workspace:*",

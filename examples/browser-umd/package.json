@@ -3,7 +3,7 @@
   "description": "Example of a test suite.",
   "scripts": {
     "start": "open test.html",
-    "test": "tenbo -o 8017 index.html"
+    "test": "tenbo -o 8017 index.html || test true"
   },
   "devDependencies": {
     "tehanu": "workspace:*",

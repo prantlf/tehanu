@@ -3,7 +3,7 @@
   "description": "Example of a test suite.",
   "type": "commonjs",
   "scripts": {
-    "test": "node . || echo Done."
+    "test": "node . || test true"
   },
   "tehanu": {
     "reporter": "tehanu-repo-coco",

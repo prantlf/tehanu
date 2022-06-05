@@ -2,7 +2,7 @@
   "private": true,
   "description": "Example of a test suite.",
   "scripts": {
-    "test": "teru ./sum2.cjs ./sum1.cjs || echo Done."
+    "test": "teru ./sum2.cjs ./sum1.cjs || test true"
   },
   "devDependencies": {
     "tehanu": "workspace:*",
