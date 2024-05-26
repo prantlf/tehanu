@@ -35,13 +35,13 @@
     "test": "node lib/index.mjs test/index.js || echo '' && node lib/index.mjs -o 8013 test/index.html || test true"
   },
   "dependencies": {
-    "colorette": "^2.0.17",
+    "colorette": "^2.0.20",
     "polka": "^0.5.2",
-    "sirv": "^2.0.2",
+    "sirv": "^2.0.4",
     "tiny-glob": "^0.2.9"
   },
   "devDependencies": {
-    "puppeteer": "^14.2.1",
+    "puppeteer": "^22.10.0",
     "tehanu": "workspace:*",
     "tehanu-repo-tape": "workspace:*"
   },

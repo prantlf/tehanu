@@ -40,8 +40,8 @@
     "prepare": "rollup -c && cp lib/index.d.ts dist"
   },
   "devDependencies": {
-    "rollup": "^2.75.5",
-    "rollup-plugin-swc-minify": "^1.0.2"
+    "rollup": "^4.18.0",
+    "rollup-plugin-swc-minify": "^1.1.0"
   },
   "keywords": [
     "tap",
