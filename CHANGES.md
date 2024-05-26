@@ -1,5 +1,9 @@
 # Changes
 
+## teru 1.0.1
+
+* Insert shebang to the bin script for compatibility with Bun.
+
 ## tenbo 0.2.1
 
 * Insert shebang to the bin script for compatibility with Bun.

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { schedule, get, set } from 'tehanu'
 import { dirname, join, resolve } from 'path'
 
