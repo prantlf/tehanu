@@ -14,7 +14,7 @@ Options:
   -V|--version            print version number and exit
   -h|--help               print usage instructions and exit
 
-If no pattern is provided, ./**/*.js will be used by default.
+Patterns can be JavaScript or HTML files. The pattern ./**/*.js is the default.
 
 Examples:
   tenbo -l puppeteer-core

@@ -67,7 +67,7 @@ If no pattern is provided, `./**/*.js` will be used by default.
 
 ## Alternative
 
-The alternative to runnign tests in scripts, the tests can can be passed to the tool as a HTML page.
+The alternative to running tests in scripts, the tests can can be passed to the tool as one or more HTML pages.
 
     tenbo tests.html
 

@@ -1,5 +1,9 @@
 # Changes
 
+## tenbo 0.2.0
+
+* Allow specifying multiple HTML pages on the command line.
+
 ## tenbo 0.1.0
 
 * Add parameter `-t|--timeout=ms` to fail the tests if a log or a network request does not occur in time.

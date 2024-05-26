@@ -79,23 +79,32 @@ const { push } = Array.prototype,
     process.exit(3)
   }
 
-  let [pageUrl] = suites, pageContent
-  if (pageUrl.endsWith('.html')) {
-    pageUrl = `/${pageUrl}`
-  } else {
+  let pages = [], scripts
+  for (const suite of suites) {
+    if (suite.endsWith('.html')) {
+      const url = `/${suite}`
+      pages.push({ url })
+    } else {
+      scripts = true
+    }
+  }
+  if (scripts) {
     const lines = ['<html>']
-    for (const suite of suites)
-      lines.push(`  <script type="module" src="${suite}"></script>`)
-    lines.push('</html>')
-    pageUrl = '/test'
-    pageContent = lines.join('\n')
+    for (const suite of suites) {
+      if (!suite.endsWith('.html'))
+        lines.push(`  <script type="module" src="${suite}"></script>`)
+    }
+    lines.push(`</html>`)
+    const url = '/test'
+    const content = lines.join('\n')
+    pages.push({ url, content })
   }
 
-  const server = serve({ port, pageUrl, pageContent, verbose })
+  const server = serve({ port, pages, verbose })
   try {
     const browser = await launch()
     try {
-      await open(browser, pageUrl)
+      await open(browser, pages)
     } finally {
       if (browser)
         if (disconnect) browser.disconnect()
@@ -106,64 +115,76 @@ const { push } = Array.prototype,
   }
 })()
 
-function serve({ port, pageUrl, pageContent, verbose }) {
+function serve({ port, pages, verbose }) {
   const app = polka()
-  if (pageContent)
-    app.use((req, res, next) => {
-      if (req.url !== pageUrl) return next()
-      res.writeHead(200, { 'Content-Type': 'text/html' })
-      res.end(pageContent)
-    })
+  for (const { url, content } of pages) {
+    if (content)
+      app.use((req, res, next) => {
+        if (req.url !== url) return next()
+        res.writeHead(200, { 'Content-Type': 'text/html' })
+        res.end(content)
+      })
+  }
   app
     .use(sirv('.', {
-      dev: true,
       maxAge: 5,
       setHeaders: (res, path) => {
-        if (path.includes('.mjs')) res.setHeader('Content-Type', 'application/javascript')
+        if (path.includes('.mjs') || path.includes('.js'))
+          res.setHeader('Content-Type', 'application/javascript')
         res.setHeader('Access-Control-Allow-Origin', '*')
       }
     }))
-    .listen(port, () => verbose && console.log(cyan(`INF Listening on localhost:${port}`)))
+  app.listen(port, () => verbose && console.log(cyan(`INF Listening on localhost:${port}`)))
   return app.server
 }
 
 function collect(page, waiting) {
   return new Promise((resolve, reject) => {
     let failed
-    page
-      .on('console', message => {
-        const text = message.text()
-        if (verbose) {
-          const type = message.type().substr(0, 3).toUpperCase()
-          const colors = {
-            LOG: text => text,
-            ERR: red,
-            WAR: yellow,
-            INF: cyan
-          }
-          const color = colors[type] || blue
-          console.log(color(text))
-        } else {
-          console.log(text)
+    const onconsole = message => {
+      const text = message.text()
+      if (verbose) {
+        const type = message.type().substr(0, 3).toUpperCase()
+        const colors = {
+          LOG: text => text,
+          ERR: red,
+          WAR: yellow,
+          INF: cyan
         }
-        waiting.start()
-        if (text.startsWith('not ok'))
-          failed = true
-        else if (text.match(/^\d+\.\.\d+$/))
-          if (failed) reject()
-          else resolve()
-      })
-      .on('response', response => {
-        verbose && console.info(green(`${response.status()} ${response.url()}`))
-        waiting.start()
-      })
-      .on('pageerror', ({ message }) => {
-        if (verbose) message = red(message)
-        console.error(message)
+        const color = colors[type] || blue
+        console.log(color(text))
+      } else {
+        console.log(text)
+      }
+      waiting.start()
+      if (text.startsWith('not ok'))
         failed = true
-      })
-      .on('requestfailed', request => verbose &&
-        console.warn(magenta(`${request.failure().errorText} ${request.url()}`)))
+      else if (text.match(/^\d+\.\.\d+$/)) {
+        page
+          .off('console', onconsole)
+          .off('response', onresponse)
+          .off('pageerror', onpageerror)
+          .off('requestfailed', onrequestfailed)
+        if (failed) reject()
+        else resolve()
+      }
+    }
+    const onresponse = response => {
+      verbose && console.info(green(`${response.status()} ${response.url()}`))
+      waiting.start()
+    }
+    const onpageerror = ({ message }) => {
+      if (verbose) message = red(message)
+      console.error(message)
+      failed = true
+    }
+    const onrequestfailed = request => verbose &&
+      console.warn(magenta(`${request.failure().errorText} ${request.url()}`))
+    page
+      .on('console', onconsole)
+      .on('response', onresponse)
+      .on('pageerror', onpageerror)
+      .on('requestfailed', onrequestfailed)
   })
 }
 
@@ -189,16 +210,18 @@ async function launch() {
   })
 }
 
-async function open(browser, pageUrl) {
+async function open(browser, pages) {
   let page, waiting
   try {
-    verbose && console.log(cyan(`INF Opening ${pageUrl}`))
     page = await browser.newPage()
-    waiting = wait()
-    const collecting = collect(page, waiting)
-    await page.goto(`http://localhost:${port}${pageUrl}`)
-    waiting.start()
-    await Promise.race([collecting, waiting])
+    for (const { url } of pages) {
+      verbose && console.log(cyan(`INF Opening ${url}`))
+      waiting = wait()
+      const collecting = collect(page, waiting)
+      await page.goto(`http://localhost:${port}${url}`)
+      waiting.start()
+      await Promise.race([collecting, waiting])
+    }
   } catch (error) {
     if (error) {
       let message = verbose ? error : error.message
