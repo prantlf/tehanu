@@ -53,7 +53,7 @@ export function skip() {}
 export function endSuite() {
   if (failed) magenta(` ✘ ${failed} of ${count}
 `)
-  else green(` ✓ ${count}
+  else green(` ✔ ${count}
 `)
 }
 

@@ -1,5 +1,9 @@
 # Changes
 
+## coco 1.0.1
+
+* Make the green tick thicker.
+  
 ## tenbo 0.2.0
 
 * Allow specifying multiple HTML pages on the command line.
