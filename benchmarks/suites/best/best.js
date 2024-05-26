@@ -15,11 +15,11 @@ module.exports = function test(name, fn) {
 }
 
 async function run() {
-	let name, fn
+  let name, fn
   try {
     for ({ name, fn } of tests) {
-			await fn();
-			console.log(green('✔'), name);
+      await fn();
+      console.log(green('✔'), name);
     }
   } catch (err) {
     console.log(red('✘'), name);

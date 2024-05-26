@@ -108,7 +108,7 @@ ${stack}`)
 
   function suite(name) {
     const tests = [], only = [], before = [], after = [], beforeEach = [], afterEach = [],
-  	      suite = (name, fn) => tests.push({ name, fn })
+          suite = (name, fn) => tests.push({ name, fn })
     let   bail, parallel
     if (typeof name === 'object') ({ name, bail, parallel } = name)
 
