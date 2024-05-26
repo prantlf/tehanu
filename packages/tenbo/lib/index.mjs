@@ -27,8 +27,8 @@ for (let i = 2, l = argv.length; i < l; ++i) {
       case 'a': case 'A': case 'headless':
         headless = opt === 'A' ? false : match[1] !== 'no'
         continue
-      case 'd': case 'disconnect':
-        disconnect = match[1] !== 'no'
+      case 'd': case 'D': case 'disconnect':
+        disconnect = opt === 'D' ? false : match[1] !== 'no'
         continue
       case 'v': case 'verbose':
         verbose = match[1] !== 'no'
@@ -98,7 +98,7 @@ const { push } = Array.prototype,
       if (!suite.endsWith('.html'))
         lines.push(`  <script type="module" src="${suite}"></script>`)
     }
-    lines.push(`</head>
+lines.push(`</head>
 </html>`)
     const url = '/test'
     const content = lines.join('\n')
