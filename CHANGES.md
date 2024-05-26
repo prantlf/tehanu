@@ -1,5 +1,9 @@
 # Changes
 
+## tenbo 0.2.1
+
+* Insert shebang to the bin script for compatibility with Bun.
+
 ## coco 1.0.1
 
 * Make the green tick thicker.

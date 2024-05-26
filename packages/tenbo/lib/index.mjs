@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { blue, cyan, green, magenta, red, yellow } from 'colorette'
 import polka from 'polka'
 import sirv from 'sirv'
