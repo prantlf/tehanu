@@ -1,6 +1,6 @@
 {
   "name": "tehanu-tenbo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Runs test suites written with tehanu in a browser.",
   "homepage": "https://github.com/prantlf/tehanu/tree/master/packages/tenbo#readme",
   "author": {
