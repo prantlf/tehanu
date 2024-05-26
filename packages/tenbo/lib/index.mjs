@@ -3,7 +3,7 @@ import polka from 'polka'
 import sirv from 'sirv'
 
 const { argv } = process, patterns = []
-let   port = 8012, headless = true, timeout = 1000,
+let   port = 8012, headless = true, timeout = 1000, cache = 5,
       verbose, disconnect, launcher, executablePath
 
 for (let i = 2, l = argv.length; i < l; ++i) {
@@ -23,6 +23,9 @@ for (let i = 2, l = argv.length; i < l; ++i) {
         continue
       case 't': case 'timeout':
         timeout = +argv[++i]
+        continue
+      case 'c': case 'cache':
+        cache = +argv[++i]
         continue
       case 'a': case 'A': case 'headless':
         headless = opt === 'A' ? false : match[1] !== 'no'
@@ -132,7 +135,7 @@ function serve({ port, pages, verbose }) {
   }
   app
     .use(sirv('.', {
-      maxAge: 5,
+      maxAge: cache,
       setHeaders: (res, path) => {
         if (path.includes('.mjs') || path.includes('.js'))
           res.setHeader('Content-Type', 'application/javascript')

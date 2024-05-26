@@ -5,6 +5,7 @@
 * Allow specifying multiple HTML pages on the command line.
 * Recognise `-D` as `--no-disconnect` on the command line.
 * Avoid favicon requests from the test pages.
+* Enable browser cache for 5 seconds.
 
 ## tenbo 0.1.0
 
