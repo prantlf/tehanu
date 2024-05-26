@@ -89,12 +89,17 @@ const { push } = Array.prototype,
     }
   }
   if (scripts) {
-    const lines = ['<html>']
+    const lines = [`<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">`]
     for (const suite of suites) {
       if (!suite.endsWith('.html'))
         lines.push(`  <script type="module" src="${suite}"></script>`)
     }
-    lines.push(`</html>`)
+    lines.push(`</head>
+</html>`)
     const url = '/test'
     const content = lines.join('\n')
     pages.push({ url, content })

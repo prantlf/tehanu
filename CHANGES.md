@@ -3,6 +3,7 @@
 ## tenbo 0.2.0
 
 * Allow specifying multiple HTML pages on the command line.
+* Avoid favicon requests from the test pages.
 
 ## tenbo 0.1.0
 
